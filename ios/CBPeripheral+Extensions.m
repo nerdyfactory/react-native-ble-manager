@@ -1,4 +1,5 @@
 #import "CBPeripheral+Extensions.h"
+@import UIKit;
 
 static char ADVERTISING_IDENTIFER;
 static char ADVERTISEMENT_RSSI_IDENTIFER;
@@ -25,11 +26,10 @@ static char ADVERTISEMENT_RSSI_IDENTIFER;
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setObject: uuidString forKey: @"id"];
   
-  if ([self name]) {
-    [dictionary setObject: [self name] forKey: @"name"];
+  if ([[UIDevice currentDevice] name]) {
+    [dictionary setObject: [[UIDevice currentDevice] name] forKey: @"name"];
   }
-  
-  
+
   if ([self RSSI]) {
     [dictionary setObject: [self RSSI] forKey: @"rssi"];
   } else if ([self advertisementRSSI]) {
